@@ -20,9 +20,12 @@ public class SchemaGeneration {
 		
 		System.out.println(lista);
 		
+		
 		em.close();
 		emf.close();				
 			
 	}
+	
+
 
 }
