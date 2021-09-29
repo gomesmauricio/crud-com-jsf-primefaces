@@ -28,7 +28,7 @@ public class Empresas implements Serializable {
 		return manager.find(Empresa.class, id);
 	}
 
-	//Consulta onde persquiso, por uma string que esta sendo parcialmente passada(Usando JPQL)
+	//Consulta onde pesquiso, por uma string que esta sendo parcialmente passada(Usando JPQL)
 	public List<Empresa> pesquisar(String nome) {
 		String jpql = "from Empresa where nomeFantasia like :nomeFantasia";
 		
@@ -38,6 +38,10 @@ public class Empresas implements Serializable {
 		query.setParameter("nomeFantasia", nome + "%");
 		
 		return query.getResultList();
+	}
+	
+	public List<Empresa> todas() {
+		return manager.createQuery("from Empresa", Empresa.class).getResultList();
 	}
 
 	public Empresa guardar(Empresa empresa) {

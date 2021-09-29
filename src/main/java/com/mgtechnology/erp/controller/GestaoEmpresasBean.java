@@ -1,32 +1,31 @@
 package com.mgtechnology.erp.controller;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.mgtechnology.erp.model.Empresa;
-import com.mgtechnology.erp.model.TipoEmpresa;
-
-import lombok.Getter;
+import com.mgtechnology.erp.repository.Empresas;
 
 @Named
 @ViewScoped
-public class GestaoEmpresasBean implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
-	
-	@Getter
-	private Empresa empresa = new Empresa();
-	
-	public void salvar() {
-		System.out.println("Razão social: "+ empresa.getRazaoSocial()
-		+"\n"+ "Nome fantasia: " + empresa.getNomeFantasia() +"\n"+
-				"Tipo: "+ empresa.getTipo());		
-	}
-	
-	public TipoEmpresa[] getTiposEmpresa() {
-		return TipoEmpresa.values();
-	}
+public class GestaoEmpresasBean implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    
+    @Inject
+    private Empresas empresas;
+    
+    private List<Empresa> listaEmpresas;
+    
+    public void todasEmpresas() {
+        listaEmpresas = empresas.todas();
+    }
+    
+    public List<Empresa> getListaEmpresas() {
+        return listaEmpresas;
+    }
 }
